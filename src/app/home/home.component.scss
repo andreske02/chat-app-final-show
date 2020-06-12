@@ -1,0 +1,203 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  max-width: initial;
+}
+
+.contacts {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  .leftside {
+    display: flex;
+    flex-direction: column;
+    border: solid 0.5px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    height: 100%;
+
+    h1 {
+      text-align: left;
+      font-size: 1.5em;
+    }
+  }
+
+  .rightside {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
+
+
+#users {
+  padding: 3em 0;
+  width: 100%;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 1em 0;
+  margin: auto;
+  position: relative;
+}
+
+img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: block;
+  padding: 2em;
+}
+
+
+
+
+.user {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 75px;
+  padding: 0 1em;
+  div.profile {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+  }
+
+  p {
+    font-size: 1em;
+    font-weight: bold;
+    color: black;
+  }
+
+  .logout {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+
+    &:hover {
+      background: rgb(200, 0, 0);
+      transform: scale(1.1);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+      .bar1,
+      .bar2 {
+        background: white;
+      }
+    }
+
+    .cross {
+      width: 25px;
+      height: 25px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bar1,
+    .bar2 {
+      content: '';
+      transform: rotate(45deg);
+      width: 5px;
+      height: 20px;
+      background: black;
+      position: absolute;
+    }
+
+    .bar2 {
+      transform: rotate(135deg);
+    }
+  }
+
+  .roomscontainer {
+    margin: 2em 0 0 0;
+  }
+
+
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 2em;
+  border-radius: 5px;
+
+  input {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    border: none;
+  }
+
+  button {
+    margin-top: 1em;
+    border-radius: 5px;
+    background: #72bcd4;
+    padding: 1em;
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    &:hover {
+      transform: scale(1.1);
+      ;
+    }
+  }
+}
+.conversations{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: #eaeaea;
+  overflow: scroll;
+  border-radius: 5px;
+  margin-top: 2em;
+  box-shadow: inset -2px -18px 12px 0px #dadada;
+}
+.conversation{
+  width: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1em 2em;
+  box-sizing: border-box;
+  margin: 1em 0;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 1px #80808052;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover{
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
+
+
+
+
+.last-message{
+  margin-left: 1em;
+  font-size: 11px ;
+  color: rgb(155, 155, 155);
+}

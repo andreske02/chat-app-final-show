@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+@use './app/css/var';
+@use './app/css/base';
+* {
+font-family: Arial, Helvetica, sans-serif;
+}
+body{
+  // background: #808080;  /* fallback for old browsers */
+// background: -webkit-linear-gradient(to right, #3fada8, #808080);  /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to right, #3fada8, #808080); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12*/
+margin: 0;
+padding: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.space-between {
+  justify-content: space-between;
+}.flex-start {
+  justify-content: flex-start;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
+.txt-right{
+  text-align: right;
+}
+.align-center {
+  align-items: center;
+}
+.container {
+  text-align: center;
+  width:90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.txt-light{
+  color: rgb(167, 167, 167);
+  margin-top: 0.5em;
+}
+.w-50{
+  width: 50%;
+}
+.w-33{
+  width: 33%;
+}

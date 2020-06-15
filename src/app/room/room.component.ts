@@ -69,7 +69,7 @@ export class RoomComponent implements OnInit, AfterViewInit , OnChanges, AfterVi
   }
 
 
-  private onScroll() {
+  public onScroll() {
     const element = this.myScrollContainer.nativeElement;
     const atBottom = element.scrollHeight - element.scrollTop === element.clientHeight;
     if (this.disableScrollDown && atBottom) {

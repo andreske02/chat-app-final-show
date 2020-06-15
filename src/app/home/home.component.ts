@@ -29,15 +29,12 @@ export class HomeComponent implements OnInit, OnChanges {
   userChats$;
   myChats: any = [];
   allRooms: any = [];
-  displayNameOtherUser: String = "";
+  displayNameOtherUser: String = '';
   constructor(public auth: AuthService, public cs: ChatService, public userService: UsersService) {
 
   }
   ngOnInit() {
     this.getmyChats();
-
-
-
   }
 
 
@@ -74,10 +71,7 @@ export class HomeComponent implements OnInit, OnChanges {
           }
         }
         this.myChats = chats;
-
-
-      }
-
+     }
     });
   }
 

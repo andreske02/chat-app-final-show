@@ -40,10 +40,24 @@
       </div>
 </div>
 <ng-template #login>
+
+  <div class="registration">
+    <input placeholder="Email" type='email' #emailLogin>
+    <input placeholder="Password" type='password' #passwordLogin>
+    <button class="button" (click)="auth.EmailPasswordSignIn(emailLogin.value,passwordLogin.value)">Login with Email</button>
+  </div>
+
+
   <div class="login">
-    <input placeholder="Username" type='text' #username>
-    <button class="button" (click)="auth.AnonymousSignIn(username.value)">Login with Username</button> <span
-      class="txt-light">or</span>
+    <!-- <input placeholder="Username" type='text' #username>
+    <button class="button" (click)="auth.AnonymousSignIn(username.value)">Login with Username</button>
+     <span class="txt-light">or</span> -->
     <button class="button" (click)="auth.googleSignIn()">Login with Google</button>
+
+    <span class="txt-light">or</span>
+    <input placeholder="Name" type='text' #name>
+    <input placeholder="Email" type='email' #email>
+    <input placeholder="Password" type='password' #password>
+    <button class="button" (click)="auth.EmailPasswordRegister(email.value,password.value, name.value)">Register with Email</button>
   </div>
 </ng-template>

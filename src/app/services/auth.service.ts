@@ -185,6 +185,47 @@ return this.afAuth.authState.pipe(
     });
   }
 
+      // Email & password sign in
+      async EmailPasswordSignIn(email, password) {
+        const credentials = await this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ...
+        console.log(errorCode, errorMessage);
+        return errorMessage;
+      });
+      return 'success';
+      }
+
+
+
+    // Email & password register
+    async EmailPasswordRegister(email, password, username) {
+      const credentials = await this.afAuth.auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ...
+      console.log(errorCode, errorMessage);
+      return errorMessage;
+    });
+    return this.updateUserDataEmail(credentials, email, username);
+    }
+
+      // Update user data with email
+  private updateUserDataEmail(credentials, email, username) {
+    const userRef: AngularFirestoreDocument < any > = this.afs.doc(`users/${credentials.user.uid}`);
+    const data = {
+      uid: credentials.user.uid,
+      email: email,
+      displayName: username,
+    };
+
+    return userRef.set(data, {
+      merge: true
+    });
+  }
   async signOut() {
     await this.setPresence('offline');
     await this.afAuth.auth.signOut();

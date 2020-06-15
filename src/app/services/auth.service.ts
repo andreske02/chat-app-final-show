@@ -132,14 +132,14 @@ return this.afAuth.authState.pipe(
 
   // !=============SIGNIN============= //
   // Google signin
-  googleSignIn() {
+  googleSignUp(formVal) {
     const provider = new firebase.auth.GoogleAuthProvider();
-    return this.oAuthLogin(provider);
+    return this.oAuthRegister(provider,formVal);
   }
 
-  private async oAuthLogin(provider) {
+  private async oAuthRegister(provider, formVal) {
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    return this.updateUserDataGoogle(credential.user);
+    return this.updateUserDataGoogle(credential.user, formVal);
   }
 
   private updateUserDataGoogle({
@@ -147,14 +147,17 @@ return this.afAuth.authState.pipe(
     email,
     displayName,
     photoURL
-  }) {
+  }, formVal) {
     const userRef: AngularFirestoreDocument < any > = this.afs.doc(`users/${uid}`);
 
     const data = {
       uid,
       email,
       displayName,
-      photoURL
+      photoURL,
+      website: formVal.website,
+      function: formVal.functie,
+      bio: formVal.bio,
     };
 
     return userRef.set(data, {
@@ -162,24 +165,17 @@ return this.afAuth.authState.pipe(
     });
   }
 
-  // Anonymous sign in
-  async AnonymousSignIn(userName) {
-    const credentials = await this.afAuth.auth.signInAnonymously();
-    return this.updateUserData(credentials, userName);
+  // Google signin
+  googleSignIn() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return this.oAuthLogin(provider);
   }
 
-  // Update user data
-  private updateUserData(credentials, username) {
-    const userRef: AngularFirestoreDocument < any > = this.afs.doc(`users/${credentials.user.uid}`);
-    const data = {
-      uid: credentials.user.uid,
-      displayName: username,
-    };
-
-    return userRef.set(data, {
-      merge: true
-    });
+  private async oAuthLogin(provider) {
+    const credential = await this.afAuth.auth.signInWithPopup(provider);
+    return ;
   }
+
 
     // Email & password sign in
     async EmailPasswordSignIn(formVal) {
@@ -226,6 +222,30 @@ return this.afAuth.authState.pipe(
       merge: true
     });
   }
+
+
+
+
+
+
+    // Anonymous sign in
+    async AnonymousSignIn(userName) {
+      const credentials = await this.afAuth.auth.signInAnonymously();
+      return this.updateUserData(credentials, userName);
+    }
+
+    // Update user data
+    private updateUserData(credentials, username) {
+      const userRef: AngularFirestoreDocument < any > = this.afs.doc(`users/${credentials.user.uid}`);
+      const data = {
+        uid: credentials.user.uid,
+        displayName: username,
+      };
+
+      return userRef.set(data, {
+        merge: true
+      });
+    }
   async signOut() {
     await this.setPresence('offline');
     await this.afAuth.auth.signOut();

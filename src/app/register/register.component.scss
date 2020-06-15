@@ -1,5 +1,5 @@
 #register{
-  width: 500px;
+  width: 800px;
   text-align: left;
 .input-form{
   display: flex;
@@ -39,6 +39,8 @@ span.or{
   margin: 0em 0;
   margin-bottom: 2em;
   display: block;
+  display: flex;
+  align-self: center;
 }
 .google-btn {
   width: 40%;
@@ -91,6 +93,11 @@ span.or{
   background: #F8F8F8;
   color: #fff;
   user-select: none
+}
+.google{
+  background-color: grey;
+  padding: 2em;
+  border-radius: 5px;
 }
 
 }

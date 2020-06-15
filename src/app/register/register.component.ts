@@ -25,6 +25,7 @@ import {
 })
 export class RegisterComponent implements OnInit {
   registerEmailForm;
+  registerGoogleForm;
   constructor(public auth: AuthService,
     public cs: ChatService,
     public userService: UsersService,
@@ -39,10 +40,14 @@ export class RegisterComponent implements OnInit {
       functie: '',
       bio: ''
     });
+    this.registerGoogleForm = this.formBuilder.group({
+      website: '',
+      functie: '',
+      bio: ''
+    });
   }
 
   ngOnInit() {
-
   }
 
   goToHome() {
@@ -50,5 +55,9 @@ export class RegisterComponent implements OnInit {
   }
   EmailPasswordRegister(formVal) {
     this.auth.EmailPasswordRegister(formVal);
+  }
+
+  GoogleRegister(formVal) {
+  this.auth.googleSignUp(formVal);
   }
 }

@@ -7,10 +7,6 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import{ tap, map, switchMap, first} from 'rxjs/operators';
 import {of, Subscription} from'rxjs';
 import {Observable} from 'rxjs';
-
-
-
-
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 
 @Injectable({
@@ -185,24 +181,9 @@ return this.afAuth.authState.pipe(
     });
   }
 
-      // Email & password sign in
-      async EmailPasswordSignIn(email, password) {
-        const credentials = await this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ...
-        console.log(errorCode, errorMessage);
-        return errorMessage;
-      });
-      return 'success';
-      }
-
-
-
-    // Email & password register
-    async EmailPasswordRegister(email, password, username) {
-      const credentials = await this.afAuth.auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
+    // Email & password sign in
+    async EmailPasswordSignIn(formVal) {
+      const credentials = await this.afAuth.auth.signInWithEmailAndPassword(formVal.email, formVal.password).catch(function(error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -210,16 +191,35 @@ return this.afAuth.authState.pipe(
       console.log(errorCode, errorMessage);
       return errorMessage;
     });
-    return this.updateUserDataEmail(credentials, email, username);
+    return 'success';
+    }
+
+
+
+    // Email & password register
+    async EmailPasswordRegister(formVal) {
+
+      const credentials = await this.afAuth.auth.createUserWithEmailAndPassword(formVal.email, formVal.password).catch(function(error) {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ...
+      console.log(errorCode, errorMessage);
+      return errorMessage;
+    });
+    return this.updateUserDataEmail(credentials,formVal);
     }
 
       // Update user data with email
-  private updateUserDataEmail(credentials, email, username) {
+  private updateUserDataEmail(credentials, formVal) {
     const userRef: AngularFirestoreDocument < any > = this.afs.doc(`users/${credentials.user.uid}`);
     const data = {
       uid: credentials.user.uid,
-      email: email,
-      displayName: username,
+      email: formVal.email,
+      displayName: formVal.name,
+      function: formVal.functie,
+      website: formVal.website,
+      bio: formVal.bio,
     };
 
     return userRef.set(data, {

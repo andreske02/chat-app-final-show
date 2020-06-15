@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="contacts" *ngIf=" auth.user$ | async as user; else login">
+  <div class="contacts" *ngIf=" auth.user$ | async as user; else credentials">
     <div class="leftside">
       <div class="usercontainer">
         <div class="user">
@@ -30,34 +30,30 @@
       <div class="conversations">
         <h1>Conversations</h1>
         <div class="conversation" *ngFor="let chats of myChats" [routerLink]="['/chats', chats.id]">
-          <img  [src]="'assets/man.svg'" alt="">
-          {{chats.displayName}}
+          <img [src]="'assets/man.svg'" alt="">
+          {{ chats.displayName }}
 
-          <p *ngIf="chats.messages.length" class="last-message"> {{chats.messages[chats.messages.length - 1].content}}
+          <p *ngIf="chats.messages.length" class="last-message">
+            {{ chats.messages[chats.messages.length - 1].content }}
           </p>
         </div>
-        </div>
       </div>
-</div>
-<ng-template #login>
-
-  <div class="registration">
-    <input placeholder="Email" type='email' #emailLogin>
-    <input placeholder="Password" type='password' #passwordLogin>
-    <button class="button" (click)="auth.EmailPasswordSignIn(emailLogin.value,passwordLogin.value)">Login with Email</button>
+    </div>
   </div>
 
 
-  <div class="login">
-    <!-- <input placeholder="Username" type='text' #username>
-    <button class="button" (click)="auth.AnonymousSignIn(username.value)">Login with Username</button>
-     <span class="txt-light">or</span> -->
-    <button class="button" (click)="auth.googleSignIn()">Login with Google</button>
 
-    <span class="txt-light">or</span>
-    <input placeholder="Name" type='text' #name>
-    <input placeholder="Email" type='email' #email>
-    <input placeholder="Password" type='password' #password>
-    <button class="button" (click)="auth.EmailPasswordRegister(email.value,password.value, name.value)">Register with Email</button>
-  </div>
-</ng-template>
+
+  <ng-template #credentials>
+    <article class="container">
+      <h2>Je bent nog niet ingelogd.</h2>
+
+      <p>Om met andere mensen te kunnen chatten hebben we even je tijd nodig om te registreren of in te loggen. Andere
+        gebruikers zullen uw profiel kunnen bekijken zodat ze u kunnen contacteren. Uw opgeslagen gegevens worden meteen
+        na het evenement vernietigd.</p>
+      <app-login></app-login>
+
+      <p>Nog geen account?</p>
+      <button [routerLink]="['/register']" type="button">Register</button>
+    </article>
+  </ng-template>

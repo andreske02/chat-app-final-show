@@ -1,0 +1,18 @@
+<div class="login">
+<article class="container">
+  <form class="flex column" [formGroup]="loginEmailForm" (ngSubmit)="EmailPasswordSignIn(loginEmailForm.value)" >
+<section class="flex column">
+  <input placeholder="Email" type='email' #emailLogin formControlName="email">
+  <input placeholder="Password" type='password' #passwordLogin formControlName="password">
+  <button class="submit" >Login</button>
+</section>
+</form>
+  <span class="txt-light">or</span>
+
+
+  <section>
+  <button class="button" (click)="auth.googleSignIn()">Login with Google</button>
+  </section>
+
+</article>
+</div>

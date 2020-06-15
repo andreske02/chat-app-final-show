@@ -40,18 +40,22 @@ export class HomeComponent implements OnInit, OnChanges {
 
 
   async getmyChats() {
-    const user = await this.auth.getUser();
-    const userId = user.uid;
-    await this.cs.getAllChats().subscribe((res) => {
-      let chats = [];
-      for (const chat of res) {
-        if (chat['uid'] === userId || chat['uid2'] === userId) {
-          // chats.push(chat);
-          this.getOtherUserName(chat,chats, userId);
-        }
-      }
 
-    });
+    const user = await this.auth.getUser();
+    if(user){
+      const userId = user.uid;
+      await this.cs.getAllChats().subscribe((res) => {
+        const chats = [];
+        for (const chat of res) {
+          if (chat['uid'] === userId || chat['uid2'] === userId) {
+            // chats.push(chat);
+            this.getOtherUserName(chat, chats, userId);
+          }
+        }
+
+      });
+    }
+
   }
 
   async getOtherUserName(chat, chats, userId) {

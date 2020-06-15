@@ -20,6 +20,8 @@ import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { RoomComponent } from './room/room.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const config = {
   apiKey: 'AIzaSyDkgAwyClmcH_RsB3ODGNH6Vy30RGQcNK0',
@@ -38,7 +40,9 @@ const config = {
       HomeComponent,
       UsersComponent,
       RoomsComponent,
-      RoomComponent
+      RoomComponent,
+      LoginComponent,
+      RegisterComponent
    ],
    imports: [
       BrowserModule,
